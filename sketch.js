@@ -1,5 +1,5 @@
 const Engine = Matter.Engine;
-const World = Matter.Word;
+const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
@@ -9,6 +9,7 @@ var holder,ball;
 var box1;
 var slingshot;
 var polygonImg;
+var gameState = "onSling";
 
 function preload(){
   polygonImg = loadImage("polygon.png")
@@ -92,15 +93,28 @@ function draw() {
   block14.display();
   block15.display();
   block16.display();
+
+  blocks1.display();
+  blocks2.display();
+  blocks3.display();
+  blocks4.display();
+  blocks5.display();
+  blocks6.display();
+  blocks7.display();
+  blocks8.display();
+  blocks9.display();  
   imageMode(CENTER);
   image(polygonImg,ball.position.x,ball.position.y,40,40);
-  slingshot.display();
+  Slingshot.display();
 }
 
 function mouseDragged(){
+  if (gameState!=="launched"){
   Matter.Body.setPosition(this.ball,{x:mouseX, y:mouseY})
+}
 }
 
 function mouseReleased(){
-  slingshot.fly()
+  slingshot.fly();
+  gameState = "launched";
 }
